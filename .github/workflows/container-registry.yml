@@ -19,12 +19,15 @@ jobs:
       - name: Build Docker Image
         run: |
           docker buildx create --use
-          docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}:latest .
+          IMAGE_TAG="latest"
+          REPO_NAME="ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}"
+          docker buildx build --platform linux/amd64,linux/arm64 -t $REPO_NAME:$IMAGE_TAG .
 
       - name: Login to GitHub Container Registry
         run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Push Docker Image to GitHub Container Registry
         run: |
-          docker push ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}:latest
-
+          IMAGE_TAG="latest"
+          REPO_NAME="ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}"
+          docker push $REPO_NAME:$IMAGE_TAG
