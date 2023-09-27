@@ -5,6 +5,9 @@ on:
     branches:
       - 'feature/**'
 
+permissions:
+  contents: read
+
 jobs:
   build:
 
