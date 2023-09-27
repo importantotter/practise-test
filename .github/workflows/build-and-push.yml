@@ -1,19 +1,19 @@
 on:
-push:
-  branches:
-    - develop
+  push:
+    branches:
+      - develop
 
 jobs:
-  build-and-push:
+  build_and_push:
 
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Log in to GitHub Container Registry
-        run: echo "${{ secrets.DOCKER_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Build and push Docker image
         run: |
