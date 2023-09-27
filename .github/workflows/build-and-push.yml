@@ -1,12 +1,10 @@
-name: Build and Push Docker Image
-
 on:
 push:
   branches:
     - develop
 
 jobs:
-  build_and_push:
+  build-and-push:
 
     runs-on: ubuntu-latest
 
