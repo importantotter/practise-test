@@ -1,33 +1,25 @@
+name: Store Artifact to GitHub Packages
+
 on:
   push:
     branches:
       - develop
 
-permissions:
-  contents: read
-
 jobs:
-  publish:
-
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v2
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
+      - name: Build Your Project
+        run: |
+          cd $GITHUB_WORKSPACE
+          ./gradlew clean build
 
-      - name: Set execute permission for gradlew
-        run: chmod +x ./gradlew
-
-      - name: Build with Gradle
-        run: ./gradlew build
-
-      - name: Publish to GitHub Packages
-        run: ./gradlew publish
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_REGISTRY }}
+      - name: Publish Artifact to GitHub Packages
+        run: |
+          echo ${{ secrets.TOKEN_REGISTRY }} | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+          docker build -t docker.pkg.github.com/importantotter/practise-test/image:tag .
+          docker push docker.pkg.github.com/importantotter/practise-test/image:tag
