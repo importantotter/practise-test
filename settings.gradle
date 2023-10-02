@@ -1,4 +1,5 @@
 rootProject.name = 'practise-test'
-include 'e2e-tests'
 include 'e2e-test'
+include 'e2e-tests'
+
 
