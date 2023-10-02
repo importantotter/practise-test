@@ -41,7 +41,7 @@ dependencies {
             "org.projectlombok:lombok:${lombokVersion}",
             "org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}"
 
-    implementation project(':e2e-tests')
+    implementation project(':e2e-test')
 }
 
 java {
