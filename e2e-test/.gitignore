@@ -67,6 +67,7 @@ bin/
 .lazybones/
 generated/
 .idea/*
+.target/*
 !.idea/codeStyles/
 !.idea/codeStyles/codeStyleConfig.xml
 !.idea/codeStyles/Project.xml
@@ -74,6 +75,8 @@ generated/
 !.idea/encodings.xml
 !.idea/vcs.xml
 !gradle-wrapper.jar
+!/src/main//target/
+!/src/test//target/
 .asciidoctor/
 .asciidoctorconfig
 #### GENERATED DO NOT EDIT USE gitignore{} in gradle config instead ###
